@@ -1,5 +1,8 @@
 # 图片压缩插件 img-compress-file
 ## 使用
+```
+npm i img-compress-file
+```
 
 ```
 import compressImg from 'img-compress-file'
