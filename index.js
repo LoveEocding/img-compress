@@ -16,7 +16,9 @@ var compressImg = function compressImg(file) {
     var callback = arguments[3];
 
     console.info('初始大小:', file.size);
-    if (isAutoCompress) qualit = chooseQualityBySize(file.size);
+    if (isAutoCompress) {
+        qualit = chooseQualityBySize(file.size);
+    }
     console.info('压缩比例:', qualit);
     if (qualit === 1) {
         callback(file);
@@ -46,6 +48,7 @@ var compressImg = function compressImg(file) {
  * 根据文件的大小选择文件压缩比例
  */
 var chooseQualityBySize = function chooseQualityBySize(size) {
+    console.info('开始自动选择比例');
     var multiple = 1000;
     switch (true) {
         case size > 500 * multiple && size < 1000 * multiple:
@@ -54,6 +57,8 @@ var chooseQualityBySize = function chooseQualityBySize(size) {
             return 0.5;
         case size > 2000 * multiple && size < 5000 * multiple:
             return 0.3;
+        case size > 5000 * multiple && size < 10000 * multiple:
+            return 0.2;
         case size > 10000 * multiple:
             return 0.1;
         default:
